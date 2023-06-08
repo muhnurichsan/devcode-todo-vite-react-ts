@@ -1,17 +1,17 @@
 import { create } from "zustand";
 
-interface ModalAddStore {
+interface ModalFormStore {
   isOpen: boolean;
   data: Record<string, any>;
   onOpen: (data?: Record<string, any>) => void;
   onClose: () => void;
 }
 
-const useModalAdd = create<ModalAddStore>((set) => ({
+const useModalForm = create<ModalFormStore>((set) => ({
   data: {},
   isOpen: false,
   onOpen: (data) => set({ isOpen: true, data }),
   onClose: () => set({ isOpen: false }),
 }));
 
-export default useModalAdd;
+export default useModalForm;

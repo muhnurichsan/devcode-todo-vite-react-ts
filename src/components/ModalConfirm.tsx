@@ -36,7 +36,8 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({ isTodoItem, mutate }) => {
 
   const body = (
     <div
-      className="p-4"
+      data-cy="modalConfirm-todo"
+      className="py-5 px-14"
       onClick={(e) => {
         e.stopPropagation();
       }}
@@ -73,6 +74,7 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({ isTodoItem, mutate }) => {
   );
   return (
     <Modal
+      data-cy="modalConfirm-todo"
       isOpen={modalConfirm.isOpenConfirm || modalConfirm.isOpenInfo}
       body={body}
     ></Modal>

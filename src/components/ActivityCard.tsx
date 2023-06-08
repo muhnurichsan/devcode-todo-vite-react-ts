@@ -15,7 +15,10 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ data }) => {
   }).format(new Date(data.created_at));
 
   return (
-    <div className="w-60 h-60 flex flex-col rounded-lg px-6 py-5 justify-between shadow-md bg-white">
+    <div
+      data-cy="activityCard-todo"
+      className="w-60 h-60 flex flex-col rounded-lg px-6 py-5 justify-between shadow-md bg-white"
+    >
       <h2
         className="text-lg font-bold cursor-pointer"
         onClick={() => {

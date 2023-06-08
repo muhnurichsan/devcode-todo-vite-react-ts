@@ -6,6 +6,7 @@ interface CheckboxProps {
 const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange }) => {
   return (
     <input
+      data-cy="checkbox-todo"
       defaultChecked={checked}
       onChange={onChange}
       type="checkbox"

@@ -1,5 +1,5 @@
 import closeIcon from "../assets/close.svg";
-import useModalAdd from "../hooks/useModalAdd";
+import useModalForm from "../hooks/useModalForm";
 import Button from "./Button";
 import Input from "./Input";
 import Modal from "./Modal";
@@ -7,13 +7,13 @@ import { useCallback, useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-interface ModalAddProps {
+interface ModalFormProps {
   mutate: () => void;
 }
 
-const ModalAdd: React.FC<ModalAddProps> = ({ mutate }) => {
-  const modalAdd = useModalAdd();
-  const { data } = modalAdd;
+const ModalForm: React.FC<ModalFormProps> = ({ mutate }) => {
+  const modalForm = useModalForm();
+  const { data } = modalForm;
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("");
@@ -25,28 +25,28 @@ const ModalAdd: React.FC<ModalAddProps> = ({ mutate }) => {
         priority: priority,
         title,
       });
-      modalAdd.onClose();
+      modalForm.onClose();
       mutate();
     } catch (error) {
       console.log(error);
     }
-  }, [id, priority, title, modalAdd, mutate]);
+  }, [id, priority, title, modalForm, mutate]);
 
   const EDIT_ACTIVITY = useCallback(async () => {
     try {
       await axios.patch(
-        `https://todo.api.devcode.gethired.id/todo-items/${modalAdd?.data?.id}`,
+        `https://todo.api.devcode.gethired.id/todo-items/${data?.id}`,
         {
           priority: priority,
           title: title,
         }
       );
       mutate();
-      modalAdd.onClose();
+      modalForm.onClose();
     } catch (error) {
       console.log(error);
     }
-  }, [modalAdd, title, priority, mutate]);
+  }, [modalForm, data, title, priority, mutate]);
 
   const handleChangeInputTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -69,7 +69,7 @@ const ModalAdd: React.FC<ModalAddProps> = ({ mutate }) => {
           alt="close-icon"
           className="cursor-pointer"
           onClick={() => {
-            modalAdd.onClose();
+            modalForm.onClose();
           }}
         />
       </div>
@@ -129,7 +129,7 @@ const ModalAdd: React.FC<ModalAddProps> = ({ mutate }) => {
       setTitle(data.title);
     }
   }, [data]);
-  return <Modal isOpen={modalAdd.isOpen} body={body}></Modal>;
+  return <Modal isOpen={modalForm.isOpen} body={body}></Modal>;
 };
 
-export default ModalAdd;
+export default ModalForm;

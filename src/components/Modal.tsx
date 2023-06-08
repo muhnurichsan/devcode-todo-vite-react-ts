@@ -1,4 +1,4 @@
-import useModalAdd from "../hooks/useModalAdd";
+import useModalForm from "../hooks/useModalForm";
 import useModalConfirm from "../hooks/useModalCofirm";
 
 interface ModalProps {
@@ -8,14 +8,15 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ isOpen, body }) => {
   const modalConfirm = useModalConfirm();
-  const modalAdd = useModalAdd();
+  const modalForm = useModalForm();
   if (!isOpen) {
     return null;
   }
   return (
     <div
+      data-cy="modal-todo"
       onClick={() => {
-        modalAdd.onClose();
+        modalForm.onClose();
         modalConfirm.onCloseConfirm();
         modalConfirm.onCloseInfo();
       }}

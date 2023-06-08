@@ -33,6 +33,7 @@ const Button: React.FC<ButtonProps> = ({
   }
   return (
     <button
+      data-cy="button-todo"
       onClick={onClick}
       type={type}
       className={`px-5 py-3 ${

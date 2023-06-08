@@ -5,14 +5,14 @@ import Button from "./Button";
 import { useCallback } from "react";
 import axios from "axios";
 import Checkbox from "./Checkbox";
-import useModalAdd from "../hooks/useModalAdd";
+import useModalForm from "../hooks/useModalForm";
 interface ActivityItemProps {
   data: Record<string, any>;
 }
 
 const ActivityItem: React.FC<ActivityItemProps> = ({ data }) => {
   const modalConfirm = useModalConfirm();
-  const modalAdd = useModalAdd();
+  const modalForm = useModalForm();
 
   const UPDATE_FINISH_ACTIVITY = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,7 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ data }) => {
   );
 
   const handleClickEdit = () => {
-    modalAdd.onOpen(data);
+    modalForm.onOpen(data);
   };
 
   return (

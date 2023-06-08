@@ -3,16 +3,16 @@ import EmptyState from "../components/EmptyState";
 import backIcon from "../assets/back.svg";
 import editIcon from "../assets/edit.svg";
 import sortIcon from "../assets/sort.svg";
-
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useState, useCallback, useEffect } from "react";
 import ActivityItem from "../components/ActivityItem";
-import useModalAdd from "../hooks/useModalAdd";
+import useModalForm from "../hooks/useModalForm";
 import SortCard from "../components/SortCard";
 import axios from "axios";
-import ModalAdd from "../components/ModalAdd";
+import ModalForm from "../components/ModalForm";
 import ModalConfirm from "../components/ModalConfirm";
 import Input from "../components/Input";
+import Loading from "../components/Loading";
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -22,9 +22,10 @@ const Detail = () => {
     created_at: "",
     todo_items: [],
   });
-  const modalAdd = useModalAdd();
+  const modalForm = useModalForm();
   const [openSortCard, setOpenSortCard] = useState(false);
   const [titleClicked, setTitleClicked] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [titleActivity, setTitleActivity] = useState("");
 
   const { id } = useParams();
@@ -35,6 +36,7 @@ const Detail = () => {
         `https://todo.api.devcode.gethired.id/activity-groups/${id}`
       );
       setData(response.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -77,12 +79,22 @@ const Detail = () => {
   }, [id, titleActivity]);
 
   useEffect(() => {
+    setLoading(true);
     GET_ACTIVITY_DETAIL();
     setTitleActivity(data.title);
   }, [GET_ACTIVITY_DETAIL, data.title]);
+
+  if (loading || !data) {
+    return <Loading></Loading>;
+  }
+
   return (
-    <div className="mx-20 lg:mx-80 mt-10" onClick={handleChangeInputToTitle}>
-      <ModalAdd mutate={GET_ACTIVITY_DETAIL}></ModalAdd>
+    <div
+      data-cy="detailPage-todo"
+      className="mx-20 lg:mx-80 mt-10"
+      onClick={handleChangeInputToTitle}
+    >
+      <ModalForm mutate={GET_ACTIVITY_DETAIL}></ModalForm>
       <ModalConfirm mutate={GET_ACTIVITY_DETAIL} isTodoItem></ModalConfirm>
       <div className="flex justify-between">
         <div className="flex gap-3 items-center">
@@ -119,7 +131,7 @@ const Detail = () => {
           <Button
             label="Tambah"
             onClick={() => {
-              modalAdd.onOpen();
+              modalForm.onOpen();
             }}
           ></Button>
           <SortCard isOpen={openSortCard}></SortCard>
