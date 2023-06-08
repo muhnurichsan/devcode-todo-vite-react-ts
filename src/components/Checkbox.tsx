@@ -7,7 +7,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange }) => {
   return (
     <input
       data-cy="checkbox-todo"
-      defaultChecked={checked}
+      checked={checked}
       onChange={onChange}
       type="checkbox"
       className="w-5 h-5 peer"

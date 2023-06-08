@@ -42,7 +42,7 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ data }) => {
     >
       <div className="flex items-center gap-4">
         <Checkbox
-          checked={data.is_active === 1 ? false : true}
+          checked={!data.is_active}
           onChange={UPDATE_FINISH_ACTIVITY}
         ></Checkbox>
         <div

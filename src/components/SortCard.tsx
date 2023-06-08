@@ -4,42 +4,47 @@ import ascSort from "../assets/asc.svg";
 import descSort from "../assets/desc.svg";
 import unfinishSort from "../assets/unfinish.svg";
 import checked from "../assets/checked.svg";
+import { useState } from "react";
 
 interface SortCardProps {
   isOpen: boolean;
+  handleSort: (sort: string) => void;
 }
 
-const SortCard: React.FC<SortCardProps> = ({ isOpen }) => {
+const SortCard: React.FC<SortCardProps> = ({ isOpen, handleSort }) => {
+  const [selectedOption, setSelectedOption] = useState("Terbaru");
   const sortOptions = [
     {
       icon: latestSortIcon,
       title: "Terbaru",
-      selected: true,
     },
     {
       icon: oldestSortIcon,
       title: "Terlama",
-      selected: false,
     },
     {
       icon: ascSort,
       title: "A-Z",
-      selected: false,
     },
     {
       icon: descSort,
       title: "Z-A",
-      selected: false,
     },
     {
       icon: unfinishSort,
       title: "Belum Selesai",
-      selected: false,
     },
   ];
+
   if (!isOpen) {
     return null;
   }
+
+  const handleClick = (sort: string) => {
+    setSelectedOption(sort);
+    handleSort(sort);
+  };
+
   return (
     <div
       data-cy="sortCard-todo"
@@ -48,6 +53,9 @@ const SortCard: React.FC<SortCardProps> = ({ isOpen }) => {
       {sortOptions.map((item, index) => {
         return (
           <div
+            onClick={() => {
+              handleClick(item.title);
+            }}
             key={`sort-${index}`}
             className={`flex p-3 cursor-pointer hover:bg-slate-100 ${
               index === sortOptions.length - 1 ? "" : "border-b-[1px]"
@@ -55,7 +63,7 @@ const SortCard: React.FC<SortCardProps> = ({ isOpen }) => {
           >
             <img src={item.icon} alt="latest-icon" />
             <p className="ml-2 text-md">{item.title}</p>
-            {item.selected && (
+            {selectedOption === item.title && (
               <img src={checked} alt="checked-icon" className="ml-auto" />
             )}
           </div>

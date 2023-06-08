@@ -11,7 +11,7 @@ const useModalForm = create<ModalFormStore>((set) => ({
   data: {},
   isOpen: false,
   onOpen: (data) => set({ isOpen: true, data }),
-  onClose: () => set({ isOpen: false }),
+  onClose: () => set({ isOpen: false, data: {} }),
 }));
 
 export default useModalForm;
