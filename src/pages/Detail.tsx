@@ -158,11 +158,7 @@ const Detail = () => {
               className="bg-transparent outline-none border-b-2 text-4xl font-bold w-80"
             />
           ) : (
-            <h2
-              data-cy="activity-title"
-              onClick={handleClickTitle}
-              className="text-4xl font-bold"
-            >
+            <h2 onClick={handleClickTitle} className="text-4xl font-bold">
               {titleActivity}
             </h2>
           )}
@@ -175,7 +171,7 @@ const Detail = () => {
         <div className="flex gap-5 relative">
           <Button asIcon={sortIcon} onClick={handleOpenSortCard}></Button>
           <Button
-            data-cy="activity-add-button"
+            dataCy="activity-add-button"
             label="Tambah"
             onClick={() => {
               modalForm.onOpen();

@@ -5,7 +5,7 @@ const Navbar = () => {
       className="bg-primary w-full h-[105px] flex items-center"
     >
       <div className="uppercase text-white text-2xl font-bold mx-20 lg:mx-80">
-        To do List App
+        TO DO LIST APP
       </div>
     </nav>
   );

@@ -42,7 +42,9 @@ const Dashboard = () => {
   return (
     <div data-cy="dashboardPage-todo" className="mx-20 lg:mx-80 mt-10">
       <div className="flex justify-between">
-        <h2 className="text-4xl font-bold">Activity</h2>
+        <h2 data-cy="activity-title" className="text-4xl font-bold">
+          Activity
+        </h2>
         <Button label="Tambah" onClick={handleClickAdd}></Button>
       </div>
       <ModalConfirm mutate={GET_ALL_ACTIVITY} isTodoItem={false}></ModalConfirm>

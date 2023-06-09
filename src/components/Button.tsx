@@ -9,6 +9,7 @@ interface ButtonProps {
   asIcon?: string;
   addOnClassname?: string;
   type?: "button" | "submit";
+  dataCy?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,10 +21,12 @@ const Button: React.FC<ButtonProps> = ({
   asIcon,
   addOnClassname,
   type,
+  dataCy,
 }) => {
   if (asIcon) {
     return (
       <img
+        data-cy={dataCy}
         src={asIcon}
         alt="icon"
         onClick={onClick}
@@ -33,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
   }
   return (
     <button
-      data-cy="button-todo"
+      data-cy={dataCy}
       onClick={onClick}
       type={type}
       className={`px-5 py-3 ${
