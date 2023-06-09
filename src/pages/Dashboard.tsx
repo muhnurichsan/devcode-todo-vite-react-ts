@@ -45,7 +45,11 @@ const Dashboard = () => {
         <h2 data-cy="activity-title" className="text-4xl font-bold">
           Activity
         </h2>
-        <Button label="Tambah" onClick={handleClickAdd}></Button>
+        <Button
+          dataCy="activity-add-button"
+          label="Tambah"
+          onClick={handleClickAdd}
+        ></Button>
       </div>
       <ModalConfirm mutate={GET_ALL_ACTIVITY} isTodoItem={false}></ModalConfirm>
       <div className="mt-10 flex gap-5">
