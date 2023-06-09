@@ -6,6 +6,7 @@ import Modal from "./Modal";
 import { useCallback, useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import InputSelect from "./InputSelect";
 
 interface ModalFormProps {
   mutate: () => void;
@@ -17,6 +18,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ mutate }) => {
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("");
+  const [openDropdown, setOpenDropdown] = useState(false);
 
   const ADD_NEW_ACTIVITY = useCallback(async () => {
     try {
@@ -52,9 +54,13 @@ const ModalForm: React.FC<ModalFormProps> = ({ mutate }) => {
     setTitle(e.target.value);
   };
 
+  const handleValuePriority = (data: Record<string, any>) => {
+    setPriority(data.value);
+  };
+
   const body = (
     <div
-      className="w-[450px] lg:w-[830px]"
+      className="w-[450px] lg:w-[830px] relative"
       onClick={(e) => {
         e.stopPropagation();
       }}
@@ -64,10 +70,9 @@ const ModalForm: React.FC<ModalFormProps> = ({ mutate }) => {
         <h2 className="text-lg font-semibold">
           {data ? "Edit Item" : "Tambah List Item"}
         </h2>
-        <img
-          src={closeIcon}
-          alt="close-icon"
-          className="cursor-pointer"
+        <Button
+          asIcon={closeIcon}
+          addOnClassname="cursor-pointer"
           onClick={() => {
             modalForm.onClose();
           }}
@@ -90,26 +95,26 @@ const ModalForm: React.FC<ModalFormProps> = ({ mutate }) => {
               onChange={handleChangeInputTitle}
             ></Input>
           </div>
-          <div className="flex flex-col gap-2">
+          <div
+            className="flex flex-col gap-2 relative w-1/2"
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpenDropdown(!openDropdown);
+            }}
+          >
             <label
               htmlFor="priority-activity"
               className="text-xs uppercase font-semibold"
             >
               Priority
             </label>
-            <select
-              onClick={(e: any) => {
-                setPriority(e.target.value);
-              }}
-              defaultValue={data?.priority}
-              className="py-3 px-4 pr-9 block w-1/2 lg:w-1/4 border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
-            >
-              <option value="very-high">Very High</option>
-              <option value="high">High</option>
-              <option value="normal">Medium</option>
-              <option value="low">Low</option>
-              <option value="very-low">Very Low</option>
-            </select>
+            {/* Custom Select */}
+            <InputSelect
+              value={priority || ""}
+              openDropdown={openDropdown}
+              handleValuePriority={handleValuePriority}
+            ></InputSelect>
+            {/* Custom Select */}
           </div>
         </div>
       </div>
@@ -127,6 +132,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ mutate }) => {
   useEffect(() => {
     if (data) {
       setTitle(data.title);
+      setPriority(data?.priority);
     }
   }, [data]);
   return <Modal isOpen={modalForm.isOpen} body={body}></Modal>;

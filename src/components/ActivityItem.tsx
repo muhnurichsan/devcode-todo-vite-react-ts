@@ -8,9 +8,10 @@ import Checkbox from "./Checkbox";
 import useModalForm from "../hooks/useModalForm";
 interface ActivityItemProps {
   data: Record<string, any>;
+  mutate: () => void;
 }
 
-const ActivityItem: React.FC<ActivityItemProps> = ({ data }) => {
+const ActivityItem: React.FC<ActivityItemProps> = ({ data, mutate }) => {
   const modalConfirm = useModalConfirm();
   const modalForm = useModalForm();
 
@@ -24,11 +25,12 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ data }) => {
             priority: data.priority,
           }
         );
+        mutate();
       } catch (error) {
         console.log(error);
       }
     },
-    [data]
+    [data, mutate]
   );
 
   const handleClickEdit = () => {

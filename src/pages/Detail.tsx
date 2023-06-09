@@ -184,7 +184,13 @@ const Detail = () => {
           <EmptyState isActivity />
         ) : (
           renderData.map((item, index) => {
-            return <ActivityItem key={`ac-${index}`} data={item} />;
+            return (
+              <ActivityItem
+                mutate={GET_ACTIVITY_DETAIL}
+                key={`ac-${index}`}
+                data={item}
+              />
+            );
           })
         )}
       </div>
