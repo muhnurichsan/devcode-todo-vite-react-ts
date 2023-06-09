@@ -13,7 +13,6 @@ import ModalForm from "../components/ModalForm";
 import ModalConfirm from "../components/ModalConfirm";
 import Input from "../components/Input";
 import Loading from "../components/Loading";
-import useSortData from "../hooks/useSortData";
 
 type TodoItem = {
   id: number;
@@ -23,7 +22,6 @@ type TodoItem = {
 
 const Detail = () => {
   const navigate = useNavigate();
-  const sortDataFunc = useSortData();
   const [data, setData] = useState([
     {
       id: 0,
@@ -33,6 +31,7 @@ const Detail = () => {
   ]);
   const modalForm = useModalForm();
   const [openSortCard, setOpenSortCard] = useState(false);
+  const [sortedData, setSortedData] = useState<TodoItem[]>([]);
   const [titleClicked, setTitleClicked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [titleActivity, setTitleActivity] = useState("");
@@ -89,7 +88,7 @@ const Detail = () => {
   const handleSort = useCallback(
     (sort: string) => {
       const result = [...data];
-      let sortData;
+      let sortData: TodoItem[] = [];
       if (sort === "Terbaru") {
         sortData = result.sort((a, b) => {
           return b.id - a.id;
@@ -115,17 +114,17 @@ const Detail = () => {
           return b.is_active - a.is_active;
         });
       }
-      sortDataFunc.onSort(sortData);
+      setSortedData(sortData);
     },
-    [sortDataFunc, data]
+    [data]
   );
 
-  const renderData = sortDataFunc.data.length !== 0 ? sortDataFunc.data : data;
+  const renderData = sortedData.length !== 0 ? sortedData : data;
 
   useEffect(() => {
     setLoading(true);
     GET_ACTIVITY_DETAIL();
-  }, []);
+  }, [GET_ACTIVITY_DETAIL]);
 
   if (loading || !data) {
     return <Loading></Loading>;
