@@ -43,7 +43,7 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({ isTodoItem, mutate }) => {
       }}
     >
       {modalConfirm.isOpenInfo ? (
-        <div className="flex gap-3 items-center">
+        <div data-cy="modal-information" className="flex gap-3 items-center">
           <img src={modalInfoIcon} alt="modal-info-icon" />
           <p className="text-sm font-medium">Activity berhasil dihapus</p>
         </div>
@@ -56,6 +56,7 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({ isTodoItem, mutate }) => {
           </p>
           <div className="flex gap-5">
             <Button
+              dataCy="modal-delete-cancel-button"
               label="Batal"
               isSecondary
               onClick={() => {

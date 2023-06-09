@@ -57,7 +57,13 @@ const Dashboard = () => {
           <EmptyState isActivity />
         ) : (
           data.map((item, index) => {
-            return <ActivityCard key={`ac-${index}`} data={item} />;
+            return (
+              <ActivityCard
+                dataCy="activity-item"
+                key={`ac-${index}`}
+                data={item}
+              />
+            );
           })
         )}
       </div>
