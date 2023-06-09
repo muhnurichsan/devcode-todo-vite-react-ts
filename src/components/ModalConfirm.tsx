@@ -36,7 +36,6 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({ isTodoItem, mutate }) => {
 
   const body = (
     <div
-      data-cy="modalConfirm-todo"
       className="py-5 px-14"
       onClick={(e) => {
         e.stopPropagation();
@@ -48,7 +47,10 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({ isTodoItem, mutate }) => {
           <p className="text-sm font-medium">Activity berhasil dihapus</p>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center gap-10">
+        <div
+          data-cy="modal-delete"
+          className="flex flex-col justify-center items-center gap-10"
+        >
           <img src={modalDeleteIcon} alt="modal-delete-icon" />
           <p className="text-lg font-medium text-center">
             Apakah anda yakin menghapus activity <br />
@@ -64,6 +66,7 @@ const ModalConfirm: React.FC<ModalConfirmProps> = ({ isTodoItem, mutate }) => {
               }}
             ></Button>
             <Button
+              dataCy="modal-delete-confirm-button"
               label="Hapus"
               isDanger
               onClick={handleDeleteButton}
