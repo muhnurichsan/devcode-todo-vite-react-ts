@@ -154,17 +154,13 @@ const Detail = () => {
               value={titleActivity}
               onChange={handleChangeInputTitle}
               onKeyPress={UPDATE_TITLE_ACTIVITY}
-              id="title-edit"
+              id="inputTitle"
               className="bg-transparent outline-none border-b-2 text-4xl font-bold w-80"
             />
           ) : (
-            <h2
-              data-cy="todo-title"
-              onClick={handleClickTitle}
-              className="text-4xl font-bold"
-            >
-              {titleActivity}
-            </h2>
+            <div data-cy="todo-title" onClick={handleClickTitle}>
+              <h2 className="text-4xl font-bold">{titleActivity}</h2>
+            </div>
           )}
           <Button
             asIcon={editIcon}
