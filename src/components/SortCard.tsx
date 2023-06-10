@@ -17,22 +17,27 @@ const SortCard: React.FC<SortCardProps> = ({ isOpen, handleSort }) => {
     {
       icon: latestSortIcon,
       title: "Terbaru",
+      dataCy: "sort-latest",
     },
     {
       icon: oldestSortIcon,
       title: "Terlama",
+      dataCy: "sort-oldest",
     },
     {
       icon: ascSort,
       title: "A-Z",
+      dataCy: "sort-az",
     },
     {
       icon: descSort,
       title: "Z-A",
+      dataCy: "sort-za",
     },
     {
       icon: unfinishSort,
       title: "Belum Selesai",
+      dataCy: "sort-unfinished",
     },
   ];
 
@@ -53,6 +58,7 @@ const SortCard: React.FC<SortCardProps> = ({ isOpen, handleSort }) => {
       {sortOptions.map((item, index) => {
         return (
           <div
+            data-cy={item.dataCy}
             onClick={() => {
               handleClick(item.title);
             }}
@@ -61,8 +67,10 @@ const SortCard: React.FC<SortCardProps> = ({ isOpen, handleSort }) => {
               index === sortOptions.length - 1 ? "" : "border-b-[1px]"
             }`}
           >
-            <img src={item.icon} alt="latest-icon" />
-            <p className="ml-2 text-md">{item.title}</p>
+            <div data-cy="sort-selection" className="flex">
+              <img src={item.icon} alt="latest-icon" />
+              <p className="ml-2 text-md">{item.title}</p>
+            </div>
             {selectedOption === item.title && (
               <img src={checked} alt="checked-icon" className="ml-auto" />
             )}

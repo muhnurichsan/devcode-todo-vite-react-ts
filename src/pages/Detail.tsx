@@ -170,7 +170,11 @@ const Detail = () => {
           ></Button>
         </div>
         <div className="flex gap-5 relative">
-          <Button asIcon={sortIcon} onClick={handleOpenSortCard}></Button>
+          <Button
+            dataCy="todo-sort-button"
+            asIcon={sortIcon}
+            onClick={handleOpenSortCard}
+          ></Button>
           <Button
             dataCy="todo-add-button"
             label="Tambah"
