@@ -60,6 +60,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ mutate }) => {
 
   const body = (
     <div
+      data-cy="modal-add"
       className="w-[450px] lg:w-[830px] relative"
       onClick={(e) => {
         e.stopPropagation();
@@ -89,6 +90,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ mutate }) => {
               Nama list item
             </label>
             <Input
+              dataCy="modal-add-name-input"
               value={title || ""}
               id="title-activity"
               placeholder="Tambahkan nama activity"
@@ -122,6 +124,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ mutate }) => {
       <div className="py-2 flex justify-end pr-5">
         <Button
           label="Simpan"
+          dataCy={!data ? "modal-add-save-button" : ""}
           isAdd
           onClick={data ? EDIT_ACTIVITY : ADD_NEW_ACTIVITY}
         ></Button>

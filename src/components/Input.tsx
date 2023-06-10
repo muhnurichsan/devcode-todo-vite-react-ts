@@ -6,6 +6,7 @@ interface InputProps {
   className?: string;
   value?: string;
   onKeyPress?: () => void;
+  dataCy?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -16,15 +17,16 @@ const Input: React.FC<InputProps> = ({
   className,
   value,
   onKeyPress,
+  dataCy,
 }) => {
   return (
     <input
+      data-cy={dataCy}
       id={id}
       onKeyUp={onKeyPress}
       onClick={onClick}
       required
       value={value}
-      data-cy="input-todo"
       onChange={onChange}
       type="text"
       className={
