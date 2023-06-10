@@ -52,7 +52,7 @@ const Dashboard = () => {
         ></Button>
       </div>
       <ModalConfirm mutate={GET_ALL_ACTIVITY} isTodoItem={false}></ModalConfirm>
-      <div className="mt-10 flex gap-5">
+      <div className="mt-10 flex gap-5 flex-wrap">
         {data.length === 0 ? (
           <EmptyState isActivity />
         ) : (

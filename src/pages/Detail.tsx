@@ -65,6 +65,7 @@ const Detail = () => {
 
   const handleClickTitle = (e: React.MouseEvent) => {
     e.stopPropagation();
+    UPDATE_TITLE_ACTIVITY();
     setTitleClicked(true);
   };
 
