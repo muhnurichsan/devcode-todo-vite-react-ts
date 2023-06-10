@@ -62,7 +62,10 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ data, mutate }) => {
           }
           `}
         ></div>
-        <h2 className="text-lg font-medium peer-checked:line-through peer-checked:text-gray-500">
+        <h2
+          data-cy="todo-item-title"
+          className="text-lg font-medium peer-checked:line-through peer-checked:text-gray-500"
+        >
           {data.title}
         </h2>
         <Button

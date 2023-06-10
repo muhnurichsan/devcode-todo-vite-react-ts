@@ -51,10 +51,7 @@ const SortCard: React.FC<SortCardProps> = ({ isOpen, handleSort }) => {
   };
 
   return (
-    <div
-      data-cy="sortCard-todo"
-      className="w-52 bg-white rounded-lg absolute top-16"
-    >
+    <div className="w-52 bg-white rounded-lg absolute top-16">
       {sortOptions.map((item, index) => {
         return (
           <div
