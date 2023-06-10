@@ -8,7 +8,11 @@ interface EmptyStateProps {
 const EmptyState: React.FC<EmptyStateProps> = ({ isActivity }) => {
   return (
     <div data-cy="emptyState-todo" className="flex justify-center items-center">
-      <img src={isActivity ? emptyActivity : emptyItem} alt="empty-state" />
+      <img
+        data-cy={!isActivity && "todo-empty-state"}
+        src={isActivity ? emptyActivity : emptyItem}
+        alt="empty-state"
+      />
     </div>
   );
 };

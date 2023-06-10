@@ -158,7 +158,11 @@ const Detail = () => {
               className="bg-transparent outline-none border-b-2 text-4xl font-bold w-80"
             />
           ) : (
-            <h2 onClick={handleClickTitle} className="text-4xl font-bold">
+            <h2
+              data-cy="todo-title"
+              onClick={handleClickTitle}
+              className="text-4xl font-bold"
+            >
               {titleActivity}
             </h2>
           )}
@@ -171,7 +175,7 @@ const Detail = () => {
         <div className="flex gap-5 relative">
           <Button asIcon={sortIcon} onClick={handleOpenSortCard}></Button>
           <Button
-            dataCy="activity-add-button"
+            dataCy="todo-add-button"
             label="Tambah"
             onClick={() => {
               modalForm.onOpen();
@@ -182,7 +186,7 @@ const Detail = () => {
       </div>
       <div className="mt-10 flex flex-col gap-3">
         {renderData.length === 0 ? (
-          <EmptyState isActivity />
+          <EmptyState />
         ) : (
           renderData.map((item, index) => {
             return (
