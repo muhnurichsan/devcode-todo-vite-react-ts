@@ -10,6 +10,7 @@ interface ButtonProps {
   addOnClassname?: string;
   type?: "button" | "submit";
   dataCy?: string;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   addOnClassname,
   type,
   dataCy,
+  disabled,
 }) => {
   if (asIcon) {
     return (
@@ -39,7 +41,8 @@ const Button: React.FC<ButtonProps> = ({
       data-cy={dataCy}
       onClick={onClick}
       type={type}
-      className={`px-5 py-3 ${
+      disabled={disabled}
+      className={`px-5 py-3 disabled:bg-blue-300 ${
         isDanger
           ? "bg-danger text-white"
           : isSecondary

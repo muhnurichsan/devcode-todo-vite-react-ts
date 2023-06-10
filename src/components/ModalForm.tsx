@@ -123,6 +123,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ mutate }) => {
       {/* Footer */}
       <div className="py-2 flex justify-end pr-5">
         <Button
+          disabled={title.length === 0 ? true : false}
           label="Simpan"
           dataCy={!data ? "modal-add-save-button" : ""}
           isAdd
