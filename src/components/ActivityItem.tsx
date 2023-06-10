@@ -75,6 +75,7 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ data, mutate }) => {
         ></Button>
       </div>
       <Button
+        dataCy="todo-item-delete-button"
         asIcon={deleteIcon}
         onClick={() => {
           modalConfirm.onOpenConfirm(data);
