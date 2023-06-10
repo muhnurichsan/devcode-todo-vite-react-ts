@@ -20,15 +20,19 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ data, dataCy }) => {
       data-cy={dataCy}
       className="w-60 h-60 flex flex-col rounded-lg px-6 py-5 justify-between shadow-md bg-white"
     >
-      <h2
-        data-cy="activity-item-title"
-        className="text-lg font-bold cursor-pointer"
+      <div
         onClick={() => {
           navigate(`/detail/${data.id}`);
         }}
+        className="w-full h-full cursor-pointer"
       >
-        {data.title}
-      </h2>
+        <h2
+          data-cy="activity-item-title"
+          className="text-lg font-bold cursor-pointer"
+        >
+          {data.title}
+        </h2>
+      </div>
 
       <div className="flex justify-between">
         <p
