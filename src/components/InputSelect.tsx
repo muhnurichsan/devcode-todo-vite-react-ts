@@ -74,10 +74,7 @@ const InputSelect: React.FC<InputSelectProps> = ({
           openDropdown ? "rounded-t-lg" : "rounded-lg"
         } top-16 border`}
       >
-        <div
-          data-cy="modal-add-priority-item"
-          className={`flex items-center pr-2 py-4 cursor-pointer`}
-        >
+        <div className={`flex items-center pr-2 py-4 cursor-pointer`}>
           {selected?.color && (
             <div
               className={`ml-3 rounded-full w-3 h-3 ${selected.color}`}
@@ -100,6 +97,7 @@ const InputSelect: React.FC<InputSelectProps> = ({
           {priorities.map((item, index) => {
             return (
               <div
+                data-cy="modal-add-priority-item"
                 key={`priority-${index}`}
                 className={`w-52 bg-white top-20 border ${
                   index === priorities.length - 1 ? "rounded-b-lg" : ""
