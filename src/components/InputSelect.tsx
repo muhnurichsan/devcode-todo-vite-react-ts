@@ -67,8 +67,9 @@ const InputSelect: React.FC<InputSelectProps> = ({
   }, [value, priorities]);
 
   return (
-    <div>
+    <div data-cy="modal-add-priority-dropdown">
       <div
+        data-cy="modal-add-priority-dropdown"
         className={`w-52 bg-white ${
           openDropdown ? "rounded-t-lg" : "rounded-lg"
         } top-16 border`}
@@ -92,11 +93,10 @@ const InputSelect: React.FC<InputSelectProps> = ({
         </div>
       </div>
       {openDropdown && (
-        <div className="absolute">
+        <div className="absolute" data-cy="modal-add-priority-dropdown">
           {priorities.map((item, index) => {
             return (
               <div
-                data-cy="modal-add-priority-dropdown"
                 key={`priority-${index}`}
                 className={`w-52 bg-white top-20 border ${
                   index === priorities.length - 1 ? "rounded-b-lg" : ""
