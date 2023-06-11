@@ -87,22 +87,22 @@ const Detail = () => {
     GET_ACTIVITY_DETAIL();
   };
   const handleSort = useCallback(
-    (sort: string) => {
+    (sort: number) => {
       const result = [...data];
       let sortData: TodoItem[] = [];
-      if (sort === "Terbaru") {
+      if (sort === 1) {
         sortData = result.sort((a, b) => {
           return b.id - a.id;
         });
-      } else if (sort === "Terlama") {
+      } else if (sort === 2) {
         sortData = result.sort((a, b) => {
           return a.id - b.id;
         });
-      } else if (sort === "A-Z") {
+      } else if (sort === 3) {
         sortData = result.sort((a, b) => {
           return a.title.localeCompare(b.title);
         });
-      } else if (sort === "Z-A") {
+      } else if (sort === 4) {
         sortData = result.sort((a, b) => {
           return b.title.localeCompare(a.title);
         });

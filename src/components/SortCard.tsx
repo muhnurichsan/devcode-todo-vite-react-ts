@@ -8,33 +8,38 @@ import { useState } from "react";
 
 interface SortCardProps {
   isOpen: boolean;
-  handleSort: (sort: string) => void;
+  handleSort: (sort: number) => void;
 }
 
 const SortCard: React.FC<SortCardProps> = ({ isOpen, handleSort }) => {
-  const [selectedOption, setSelectedOption] = useState("Terbaru");
+  const [selectedOption, setSelectedOption] = useState(1);
   const sortOptions = [
     {
+      id: 1,
       icon: latestSortIcon,
       title: "Terbaru",
       dataCy: "sort-latest",
     },
     {
+      id: 2,
       icon: oldestSortIcon,
       title: "Terlama",
       dataCy: "sort-oldest",
     },
     {
+      id: 3,
       icon: ascSort,
       title: "A-Z",
       dataCy: "sort-az",
     },
     {
+      id: 4,
       icon: descSort,
       title: "Z-A",
       dataCy: "sort-za",
     },
     {
+      id: 5,
       icon: unfinishSort,
       title: "Belum Selesai",
       dataCy: "sort-unfinished",
@@ -45,7 +50,7 @@ const SortCard: React.FC<SortCardProps> = ({ isOpen, handleSort }) => {
     return null;
   }
 
-  const handleClick = (sort: string) => {
+  const handleClick = (sort: number) => {
     setSelectedOption(sort);
     handleSort(sort);
   };
@@ -57,9 +62,9 @@ const SortCard: React.FC<SortCardProps> = ({ isOpen, handleSort }) => {
           <div
             data-cy={item.dataCy}
             onClick={() => {
-              handleClick(item.title);
+              handleClick(item.id);
             }}
-            key={`sort-${index}`}
+            key={item.id}
             className={`flex p-3 cursor-pointer hover:bg-slate-100 ${
               index === sortOptions.length - 1 ? "" : "border-b-[1px]"
             }`}
@@ -68,7 +73,7 @@ const SortCard: React.FC<SortCardProps> = ({ isOpen, handleSort }) => {
               <img src={item.icon} alt="latest-icon" />
               <p className="ml-2 text-md">{item.title}</p>
             </div>
-            {selectedOption === item.title && (
+            {selectedOption === item.id && (
               <img src={checked} alt="checked-icon" className="ml-auto" />
             )}
           </div>
