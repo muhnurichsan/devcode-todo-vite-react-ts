@@ -67,9 +67,8 @@ const InputSelect: React.FC<InputSelectProps> = ({
   }, [value, priorities]);
 
   return (
-    <div data-cy="modal-add-priority-dropdown">
+    <div>
       <div
-        data-cy="modal-add-priority-dropdown"
         className={`w-52 bg-white ${
           openDropdown ? "rounded-t-lg" : "rounded-lg"
         } top-16 border`}
