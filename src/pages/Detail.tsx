@@ -94,23 +94,19 @@ const Detail = () => {
         sortData = result.sort((a, b) => {
           return b.id - a.id;
         });
-      }
-      if (sort === "Terlama") {
+      } else if (sort === "Terlama") {
         sortData = result.sort((a, b) => {
           return a.id - b.id;
         });
-      }
-      if (sort === "A-Z") {
+      } else if (sort === "A-Z") {
         sortData = result.sort((a, b) => {
           return a.title.localeCompare(b.title);
         });
-      }
-      if (sort === "Z-A") {
+      } else if (sort === "Z-A") {
         sortData = result.sort((a, b) => {
           return b.title.localeCompare(a.title);
         });
-      }
-      if (sort === "Belum Selesai") {
+      } else {
         sortData = result.sort((a, b) => {
           return b.is_active - a.is_active;
         });
