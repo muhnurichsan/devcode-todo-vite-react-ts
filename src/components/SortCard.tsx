@@ -55,6 +55,7 @@ const SortCard: React.FC<SortCardProps> = ({ isOpen, handleSort }) => {
       {sortOptions.map((item, index) => {
         return (
           <div
+            data-cy="sort-selection"
             onClick={() => {
               handleClick(item.title);
             }}
@@ -63,7 +64,7 @@ const SortCard: React.FC<SortCardProps> = ({ isOpen, handleSort }) => {
               index === sortOptions.length - 1 ? "" : "border-b-[1px]"
             }`}
           >
-            <div className="flex" data-cy="sort-selection">
+            <div className="flex">
               <img src={item.icon} alt="latest-icon" />
               <p className="ml-2 text-md">{item.title}</p>
             </div>
