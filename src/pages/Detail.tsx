@@ -90,6 +90,7 @@ const Detail = () => {
     (sort: number) => {
       const result = [...data];
       let sortData: TodoItem[] = [];
+      setOpenSortCard(false);
       if (sort === 1) {
         sortData = result.sort((a, b) => {
           return b.id - a.id;

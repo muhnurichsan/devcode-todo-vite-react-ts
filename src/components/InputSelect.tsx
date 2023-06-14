@@ -59,15 +59,15 @@ const InputSelect: React.FC<InputSelectProps> = ({
 
   useEffect(() => {
     if (value !== "") {
-      const findPr = priorities.find((element) => {
+      const findPriority = priorities.find((element) => {
         return element.value === value;
       }) as SelectedType;
-      setSelected(findPr);
+      setSelected(findPriority);
     }
   }, [value, priorities]);
 
   return (
-    <div>
+    <>
       <div
         data-cy="modal-add-priority-dropdown"
         className={`w-52 bg-white ${
@@ -124,7 +124,7 @@ const InputSelect: React.FC<InputSelectProps> = ({
           })}
         </div>
       )}
-    </div>
+    </>
   );
 };
 
